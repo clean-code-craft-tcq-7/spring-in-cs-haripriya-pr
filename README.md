@@ -9,7 +9,7 @@ for details.
 ## Pass the tests
 
 The code is not complete and doesn't even compile.
-See the results of compilation and execution in the GitHub 'Action' tab.
+See the results of compilation and execution in the GitHub 'Actions' tab.
 
 Recognize the intention of the code by reading the tests.
 Design the return type in the code.
