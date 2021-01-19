@@ -32,14 +32,14 @@ namespace Statistics.Test
         {
             var emailAlert = new EmailAlert();
             var ledAlert = new LEDAlert();
-            var alerters = [emailAlert, ledAlert];
+            IAlerter[] alerters = {emailAlert, ledAlert};
 
             const float maxThreshold = 10.2;
             var statsAlerter = new StatsAlerter(maxThreshold, alerters);
-            statsAlerter.check(new List<___>{0.2, 11.9, 4.3, 8.5});
+            statsAlerter.checkAndAlert(new List<___>{0.2, 11.9, 4.3, 8.5});
 
-            Assert.True(emailAlert.isAlerted);
-            Assert.True(ledAlert.isAlerted);
+            Assert.True(emailAlert.emailSent);
+            Assert.True(ledAlert.ledGlows);
         }
     }
 }
