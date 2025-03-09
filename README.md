@@ -16,3 +16,7 @@ Design the return type in the code.
 You may alter the test while keeping its intent.
 
 Take care not to leave behind any compiler warnings in your solution.
+
+## Discussion
+
+What's `epsilon` doing in the test? If you had to choose its value, what would it be?
