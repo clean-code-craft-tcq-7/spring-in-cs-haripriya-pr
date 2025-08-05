@@ -13,7 +13,7 @@ namespace Statistics
     {
         public bool IsAbsurdValue(List<float> numbers)
         {
-            return numbers.Where(x => x < 0 || x > 200).Any();
+            return numbers.Where(x => x < 0 && x > 200).Any();
         }
 
         public Stats CalculateStatistics(List<float> numbers)
