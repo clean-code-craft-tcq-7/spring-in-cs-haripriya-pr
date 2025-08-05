@@ -15,11 +15,16 @@ namespace Statistics
         {
             //Implement statistics here
             Stats currentStats = new();
-            if (numbers.Count > 0)
-            {
-                currentStats.average = (float)numbers.Sum() / numbers.Count();
+            if(numbers.Count > 0) {
+                currentStats.average = (float)numbers.Sum() / numbers.Count;
                 currentStats.max = numbers.Max();
                 currentStats.min = numbers.Min();
+            }
+            else
+            {
+                currentStats.average = (float)double.NaN;
+                currentStats.max = (float)double.NaN;
+                currentStats.min = (float)double.NaN;
             }
             return currentStats;
         }

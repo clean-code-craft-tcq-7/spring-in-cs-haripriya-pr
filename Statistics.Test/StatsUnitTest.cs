@@ -28,6 +28,9 @@ namespace Statistics.Test
             // Double.NaN (not-a-number), as described in
             // https://docs.microsoft.com/en-us/dotnet/api/system.double.nan?view=netcore-3.1
             // Specify the Assert statements here
+            Assert.True(computedStats.average.Equals(double.NaN));
+            Assert.True(computedStats.max.Equals(double.NaN));
+            Assert.True(computedStats.min.Equals(double.NaN));
         }
     }
 }
