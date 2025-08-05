@@ -5,9 +5,9 @@ namespace Statistics
 {
     public class Stats
     {
-        public float average { get; set; }
-        public float max { get; set; }
-        public float min { get; set; }
+        public double average { get; set; }
+        public double max { get; set; }
+        public double min { get; set; }
     }
     public class StatsComputer
     {
@@ -15,16 +15,17 @@ namespace Statistics
         {
             //Implement statistics here
             Stats currentStats = new();
-            if(numbers.Count > 0) {
-                currentStats.average = (float)numbers.Sum() / numbers.Count;
+            List<float> numbersNoNaN = numbers.Where(x => !x.Equals(Double.NaN)).ToList();
+            if(numbersNoNaN.Count > 0) {
+                currentStats.average = (double)numbers.Sum() / numbers.Count;
                 currentStats.max = numbers.Max();
                 currentStats.min = numbers.Min();
             }
             else
             {
-                currentStats.average = (float)double.NaN;
-                currentStats.max = (float)double.NaN;
-                currentStats.min = (float)double.NaN;
+                currentStats.average = Double.NaN;
+                currentStats.max = Double.NaN;
+                currentStats.min = Double.NaN;
             }
             return currentStats;
         }
