@@ -11,12 +11,17 @@ namespace Statistics
     }
     public class StatsComputer
     {
+        public bool IsAbsurdValue(List<float> numbers)
+        {
+            return numbers.Where(x => x < 0 || x > 200).Any();
+        }
+
         public Stats CalculateStatistics(List<float> numbers)
         {
             //Implement statistics here
             Stats currentStats = new();
             List<float> numbersNoNaN = numbers.Where(x => !x.Equals(Double.NaN)).ToList();
-            if(numbersNoNaN.Count > 0) {
+            if(numbersNoNaN.Count > 0 && !IsAbsurdValue(numbers)) {
                 currentStats.average = (double)numbers.Sum() / numbers.Count;
                 currentStats.max = numbers.Max();
                 currentStats.min = numbers.Min();
