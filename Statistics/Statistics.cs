@@ -22,9 +22,9 @@ namespace Statistics
             Stats currentStats = new();
             List<float> numbersNoNaN = numbers.Where(x => !x.Equals(Double.NaN)).ToList();
             if(numbersNoNaN.Count > 0 && !IsAbsurdValue(numbers)) {
-                currentStats.average = (double)numbers.Sum() / numbers.Count;
-                currentStats.max = numbers.Max();
-                currentStats.min = numbers.Min();
+                currentStats.average = (double)numbersNoNaN.Sum() / numbersNoNaN.Count;
+                currentStats.max = numbersNoNaN.Max();
+                currentStats.min = numbersNoNaN.Min();
             }
             else
             {
