@@ -11,7 +11,7 @@ namespace Statistics
     }
     public class StatsComputer
     {
-        public bool IsAbsurdValue(List<double> numbers)
+        public static bool IsAbsurdValue(List<double> numbers)
         {
             return numbers.Where(x => x < 0 || x > 200).Any();
         }
