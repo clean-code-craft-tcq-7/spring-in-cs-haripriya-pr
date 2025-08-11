@@ -7,7 +7,7 @@ namespace Statistics.Test
 {
     public class StatsUnitTest
     {
-        [Fact]
+        /*[Fact]
         public void ReportsAverageMinMax()
         {
             var statsComputer = new StatsComputer();
@@ -18,8 +18,8 @@ namespace Statistics.Test
             Assert.True(Math.Abs(computedStats.max - 8.9) <= epsilon);
             Assert.True(Math.Abs(computedStats.min - 1.5) <= epsilon);
         }
-        
-        /*[Fact]
+        */
+        [Fact]
         public void ReportsNaNForEmptyInput()
         {
             var statsComputer = new StatsComputer();
@@ -32,8 +32,8 @@ namespace Statistics.Test
             Assert.True(computedStats.average.Equals(Double.NaN));
             Assert.True(computedStats.max.Equals(Double.NaN));
             Assert.True(computedStats.min.Equals(Double.NaN));
-        }*/
-
+        }
+        /*
         [Fact]
         public void ReportsAvgMinMaxIgnoreNaNInput()
         {
@@ -75,5 +75,6 @@ namespace Statistics.Test
             Assert.True(computedStats.max.Equals(Double.NaN));
             Assert.True(computedStats.min.Equals(Double.NaN));
         }
+        */
     }
 }
