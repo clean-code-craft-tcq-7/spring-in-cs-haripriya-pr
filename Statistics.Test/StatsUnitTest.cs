@@ -29,9 +29,9 @@ namespace Statistics.Test
             // Double.NaN (not-a-number), as described in
             // https://docs.microsoft.com/en-us/dotnet/api/system.double.nan?view=netcore-3.1
             // Specify the Assert statements here
-            Assert.True(computedStats.average.Equals(double.NaN));
-            Assert.True(computedStats.max.Equals(double.NaN));
-            Assert.True(computedStats.min.Equals(double.NaN));
+            Assert.True(double.IsNaN(computedStats.average));
+            Assert.True(double.IsNaN(computedStats.max));
+            Assert.True(double.IsNaN(computedStats.min));
         }
 
         [Fact]
@@ -52,9 +52,9 @@ namespace Statistics.Test
             var statsComputer = new StatsComputer();
             var computedStats = statsComputer.CalculateStatistics(
                 new List<double> { double.NaN, double.NaN, double.NaN });
-            Assert.True(computedStats.average.Equals(double.NaN));
-            Assert.True(computedStats.max.Equals(double.NaN));
-            Assert.True(computedStats.min.Equals(double.NaN));
+            Assert.True(double.IsNaN(computedStats.average));
+            Assert.True(double.IsNaN(computedStats.max));
+            Assert.True(double.IsNaN(computedStats.min));
         }
 
         [Fact]
@@ -63,9 +63,9 @@ namespace Statistics.Test
             var statsComputer = new StatsComputer();
             var computedStats = statsComputer.CalculateStatistics(
                 new List<double> { (double)1.5, (double)-1, (double)8.9 });
-            Assert.True(computedStats.average.Equals(Double.NaN));
-            Assert.True(computedStats.max.Equals(Double.NaN));
-            Assert.True(computedStats.min.Equals(Double.NaN));
+            Assert.True(double.IsNaN(computedStats.average));
+            Assert.True(double.IsNaN(computedStats.max));
+            Assert.True(double.IsNaN(computedStats.min));
         }
 
         [Fact]
@@ -74,9 +74,9 @@ namespace Statistics.Test
             var statsComputer = new StatsComputer();
             var computedStats = statsComputer.CalculateStatistics(
                 new List<double> { (double)1.5, (double)250, (double)8.9 });
-            Assert.True(computedStats.average.Equals(Double.NaN));
-            Assert.True(computedStats.max.Equals(Double.NaN));
-            Assert.True(computedStats.min.Equals(Double.NaN));
+            Assert.True(double.IsNaN(computedStats.average));
+            Assert.True(double.IsNaN(computedStats.max));
+            Assert.True(double.IsNaN(computedStats.min));
         }
 
         [Fact]
@@ -85,9 +85,9 @@ namespace Statistics.Test
             var statsComputer = new StatsComputer();
             var computedStats = statsComputer.CalculateStatistics(
                 new List<double> { double.NaN, (double)370, (double)8.9 });
-            Assert.True(computedStats.average.Equals(Double.NaN));
-            Assert.True(computedStats.max.Equals(Double.NaN));
-            Assert.True(computedStats.min.Equals(Double.NaN));
+            Assert.True(double.IsNaN(computedStats.average));
+            Assert.True(double.IsNaN(computedStats.max));
+            Assert.True(double.IsNaN(computedStats.min));
         }
 
         [Fact]

@@ -20,7 +20,7 @@ namespace Statistics
         {
             //Implement statistics here
             Stats currentStats = new();
-            List<double> numbersNoNaN = numbers.Where(x => !x.Equals(double.NaN)).ToList();
+            List<double> numbersNoNaN = numbers.Where(x => !double.IsNaN(x)).ToList();
             if(numbersNoNaN.Count > 0 && !IsAbsurdValue(numbers)) {
                 currentStats.average = (double)numbersNoNaN.Sum() / numbersNoNaN.Count;
                 currentStats.max = numbersNoNaN.Max();
