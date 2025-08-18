@@ -1,6 +1,7 @@
 using System;
 using Xunit;
 using Statistics;
+using System.Collections.Generic;
 
 namespace Statistics.Test
 {
@@ -11,22 +12,94 @@ namespace Statistics.Test
         {
             var statsComputer = new StatsComputer();
             var computedStats = statsComputer.CalculateStatistics(
-                new List<___>{1.5, 8.9, 3.2, 4.5});
-            float epsilon = 0.001F;
+                new List<double> { (double)1.5, (double)8.9, (double)3.2, (double)4.5 });
+            double epsilon = 0.001F;
             Assert.True(Math.Abs(computedStats.average - 4.525) <= epsilon);
             Assert.True(Math.Abs(computedStats.max - 8.9) <= epsilon);
             Assert.True(Math.Abs(computedStats.min - 1.5) <= epsilon);
         }
+
         [Fact]
         public void ReportsNaNForEmptyInput()
         {
             var statsComputer = new StatsComputer();
             var computedStats = statsComputer.CalculateStatistics(
-                new List<___>{});
+                new List<double> { });
             // All fields of computedStats (average, max, min) must be
             // Double.NaN (not-a-number), as described in
             // https://docs.microsoft.com/en-us/dotnet/api/system.double.nan?view=netcore-3.1
             // Specify the Assert statements here
+            Assert.True(double.IsNaN(computedStats.average));
+            Assert.True(double.IsNaN(computedStats.max));
+            Assert.True(double.IsNaN(computedStats.min));
         }
+
+        [Fact]
+        public void ReportsAvgMinMaxIgnoreNaNInput()
+        {
+            var statsComputer = new StatsComputer();
+            var computedStats = statsComputer.CalculateStatistics(
+                new List<double> { double.NaN, (double)1.5, (double)8.9 });
+            double epsilon = 0.001F;
+            Assert.True(Math.Abs(computedStats.average - 5.2) <= epsilon);
+            Assert.True(Math.Abs(computedStats.max - 8.9) <= epsilon);
+            Assert.True(Math.Abs(computedStats.min - 1.5) <= epsilon);
+        }
+
+        [Fact]
+        public void ReportsNaNForAllNaNInput()
+        {
+            var statsComputer = new StatsComputer();
+            var computedStats = statsComputer.CalculateStatistics(
+                new List<double> { double.NaN, double.NaN, double.NaN });
+            Assert.True(double.IsNaN(computedStats.average));
+            Assert.True(double.IsNaN(computedStats.max));
+            Assert.True(double.IsNaN(computedStats.min));
+        }
+
+        [Fact]
+        public void ReportsNaNForAbsurdInputLow()
+        {
+            var statsComputer = new StatsComputer();
+            var computedStats = statsComputer.CalculateStatistics(
+                new List<double> { (double)1.5, (double)-1, (double)8.9 });
+            Assert.True(double.IsNaN(computedStats.average));
+            Assert.True(double.IsNaN(computedStats.max));
+            Assert.True(double.IsNaN(computedStats.min));
+        }
+
+        [Fact]
+        public void ReportsNaNForAbsurdInputHigh()
+        {
+            var statsComputer = new StatsComputer();
+            var computedStats = statsComputer.CalculateStatistics(
+                new List<double> { (double)1.5, (double)250, (double)8.9 });
+            Assert.True(double.IsNaN(computedStats.average));
+            Assert.True(double.IsNaN(computedStats.max));
+            Assert.True(double.IsNaN(computedStats.min));
+        }
+
+        [Fact]
+        public void ReportsNaNForAbsurdNaNInput()
+        {
+            var statsComputer = new StatsComputer();
+            var computedStats = statsComputer.CalculateStatistics(
+                new List<double> { double.NaN, (double)370, (double)8.9 });
+            Assert.True(double.IsNaN(computedStats.average));
+            Assert.True(double.IsNaN(computedStats.max));
+            Assert.True(double.IsNaN(computedStats.min));
+        }
+
+        [Fact]
+        public void ReportsAverageMinMaxForSingleInput(){
+            var statsComputer = new StatsComputer();
+            var computedStats = statsComputer.CalculateStatistics(
+            new List<double> {100});
+            double epsilon = 0.001F;
+            Assert.True(Math.Abs(computedStats.average - 100) <= epsilon);
+            Assert.True(Math.Abs(computedStats.max - 100) <= epsilon);
+            Assert.True(Math.Abs(computedStats.min - 100) <= epsilon);
+        }
+
     }
 }
